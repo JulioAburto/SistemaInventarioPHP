@@ -4,7 +4,7 @@
 
 	function conexion(){
 		//$pdo = new mysqli("localhost", "usuario", "contraseña", "basedatos");
-		$pdo = new PDO('mysql:host=localhost;dbname=inventario','root', '');
+		$pdo = new PDO('mysql:host=localhost;dbname=zapateria','root', '');
 		// $pdo = new PDO(
 		// 	'mysql:host=localhost;dbname=inventario',
 		// 	'root',
@@ -28,7 +28,7 @@
 
 	# Limpiar cadenas de texto #
 	function limpiar_cadena($cadena){
-		$cadena=trim($cadena);
+		//$cadena=trim($cadena);
 		$cadena=stripslashes($cadena);
 		$cadena=str_ireplace("<script>", "", $cadena);
 		$cadena=str_ireplace("</script>", "", $cadena);

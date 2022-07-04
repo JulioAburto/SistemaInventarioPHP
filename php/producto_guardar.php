@@ -4,12 +4,12 @@
 	require_once "main.php";
 
 	/*== Almacenando datos ==*/
-	$codigo=limpiar_cadena($_POST['producto_codigo']);
-	$nombre=limpiar_cadena($_POST['producto_nombre']);
+	$codigo=limpiar_cadena($_POST['codigo_Articulo']);
+	$nombre=limpiar_cadena($_POST['nombre_Articulo']);
 
-	$precio=limpiar_cadena($_POST['producto_precio']);
-	$stock=limpiar_cadena($_POST['producto_stock']);
-	$categoria=limpiar_cadena($_POST['producto_categoria']);
+	$precio=limpiar_cadena($_POST['precio_Articulo']);
+	$stock=limpiar_cadena($_POST['stock_Articulo']);
+	$categoria=limpiar_cadena($_POST['id_Categoria']);
 
 
 	/*== Verificando campos obligatorios ==*/
@@ -68,7 +68,7 @@
 
     /*== Verificando codigo ==*/
     $check_codigo=conexion();
-    $check_codigo=$check_codigo->query("SELECT producto_codigo FROM producto WHERE producto_codigo='$codigo'");
+    $check_codigo=$check_codigo->query("SELECT codigo_Articulo FROM articulo WHERE codigo_Articulo='$codigo'");
     if($check_codigo->rowCount()>0){
         echo '
             <div class="notification is-danger is-light">
@@ -83,7 +83,7 @@
 
     /*== Verificando nombre ==*/
     $check_nombre=conexion();
-    $check_nombre=$check_nombre->query("SELECT producto_nombre FROM producto WHERE producto_nombre='$nombre'");
+    $check_nombre=$check_nombre->query("SELECT nombre_Articulo FROM articulo WHERE nombre_Articulo='$nombre'");
     if($check_nombre->rowCount()>0){
         echo '
             <div class="notification is-danger is-light">
@@ -98,7 +98,7 @@
 
     /*== Verificando categoria ==*/
     $check_categoria=conexion();
-    $check_categoria=$check_categoria->query("SELECT categoria_id FROM categoria WHERE categoria_id='$categoria'");
+    $check_categoria=$check_categoria->query("SELECT id_Categoria FROM categoria WHERE id_Categoria='$categoria'");
     if($check_categoria->rowCount()<=0){
         echo '
             <div class="notification is-danger is-light">
@@ -116,7 +116,7 @@
 
 
 	/*== Comprobando si se ha seleccionado una imagen ==*/
-	if($_FILES['producto_foto']['name']!="" && $_FILES['producto_foto']['size']>0){
+	if($_FILES['foto_Articulo']['name']!="" && $_FILES['foto_Articulo']['size']>0){
 
         /* Creando directorio de imagenes */
         if(!file_exists($img_dir)){
@@ -132,7 +132,7 @@
         }
 
 		/* Comprobando formato de las imagenes */
-		if(mime_content_type($_FILES['producto_foto']['tmp_name'])!="image/jpeg" && mime_content_type($_FILES['producto_foto']['tmp_name'])!="image/png"){
+		if(mime_content_type($_FILES['foto_Articulo']['tmp_name'])!="image/jpeg" && mime_content_type($_FILES['foto_Articulo']['tmp_name'])!="image/png"){
 			echo '
 	            <div class="notification is-danger is-light">
 	                <strong>¡Ocurrio un error inesperado!</strong><br>
@@ -144,7 +144,7 @@
 
 
 		/* Comprobando que la imagen no supere el peso permitido */
-		if(($_FILES['producto_foto']['size']/1024)>3072){
+		if(($_FILES['foto_Articulo']['size']/1024)>3072){
 			echo '
 	            <div class="notification is-danger is-light">
 	                <strong>¡Ocurrio un error inesperado!</strong><br>
@@ -156,7 +156,7 @@
 
 
 		/* extencion de las imagenes */
-		switch(mime_content_type($_FILES['producto_foto']['tmp_name'])){
+		switch(mime_content_type($_FILES['foto_Articulo']['tmp_name'])){
 			case 'image/jpeg':
 			  $img_ext=".jpg";
 			break;
@@ -175,7 +175,7 @@
 		$foto=$img_nombre.$img_ext;
 
 		/* Moviendo imagen al directorio */
-		if(!move_uploaded_file($_FILES['producto_foto']['tmp_name'], $img_dir.$foto)){
+		if(!move_uploaded_file($_FILES['foto_Articulo']['tmp_name'], $img_dir.$foto)){
 			echo '
 	            <div class="notification is-danger is-light">
 	                <strong>¡Ocurrio un error inesperado!</strong><br>
@@ -192,16 +192,16 @@
 
 	/*== Guardando datos ==*/
     $guardar_producto=conexion();
-    $guardar_producto=$guardar_producto->prepare("INSERT INTO producto(producto_codigo,producto_nombre,producto_precio,producto_stock,producto_foto,categoria_id,usuario_Id) VALUES(:codigo,:nombre,:precio,:stock,:foto,:categoria,:usuario)");
+    $guardar_producto=$guardar_producto->prepare("INSERT INTO articulo(id_Categoria,id_Usuario,codigo_Articulo,nombre_Articulo,precio_Articulo,stock_Articulo,foto_Articulo) VALUES(:categoria,:usuario,:codigo,:nombre,:precio,:stock,:foto)");
 
     $marcadores=[
+        ":categoria"=>$categoria,
+        ":usuario"=>$_SESSION['id'],
         ":codigo"=>$codigo,
         ":nombre"=>$nombre,
         ":precio"=>$precio,
         ":stock"=>$stock,
         ":foto"=>$foto,
-        ":categoria"=>$categoria,
-        ":usuario"=>$_SESSION['id']
     ];
 
     $guardar_producto->execute($marcadores);

@@ -38,17 +38,17 @@
     }
     
     $check_user=conexion();
-    $check_user=$check_user->query("SELECT * FROM usuario WHERE usuario_usuario='$usuario'");
+    $check_user=$check_user->query("SELECT * FROM usuario WHERE usuario_Usuario='$usuario'");
     if($check_user->rowCount()==1){
 
     	$check_user=$check_user->fetch();
 
-    	if($check_user['usuario_usuario']==$usuario ){
+    	if($check_user['usuario_Usuario']==$usuario ){
 
-    		$_SESSION['id']=$check_user['usuario_Id'];
-    		$_SESSION['nombre']=$check_user['usuario_nombre'];
-    		$_SESSION['apellido']=$check_user['usuario_apellido'];
-    		$_SESSION['usuario']=$check_user['usuario_usuario'];
+    		$_SESSION['id']=$check_user['id_Usuario'];
+    		$_SESSION['nombre']=$check_user['usuario_Nombre'];
+    		$_SESSION['apellido']=$check_user['usuario_Apellido'];
+    		$_SESSION['usuario']=$check_user['usuario_Usuario'];
 
     		if(headers_sent()){
 				echo "<script> window.location.href='index.php?vista=home'; </script>";

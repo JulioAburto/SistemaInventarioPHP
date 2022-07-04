@@ -13,7 +13,7 @@
 
 		/*== Verificando categoria ==*/
     	$check_categoria=conexion();
-    	$check_categoria=$check_categoria->query("SELECT * FROM categoria WHERE categoria_id='$id'");
+    	$check_categoria=$check_categoria->query("SELECT * FROM categoria WHERE id_Categoria='$id'");
 
         if($check_categoria->rowCount()>0){
         	$datos=$check_categoria->fetch();
@@ -23,19 +23,19 @@
 
 	<form action="./php/categoria_actualizar.php" method="POST" class="FormularioAjax" autocomplete="off" >
 
-		<input type="hidden" name="categoria_id" value="<?php echo $datos['categoria_id']; ?>" required >
+		<input type="hidden" name="id_Categoria" value="<?php echo $datos['id_Categoria']; ?>" required >
 
 		<div class="columns">
 		  	<div class="column">
 		    	<div class="control">
 					<label>Nombre</label>
-				  	<input class="input" type="text" name="categoria_nombre" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{4,50}" maxlength="50" required value="<?php echo $datos['categoria_nombre']; ?>" >
+				  	<input class="input" type="text" name="nombre_Categoria" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{4,50}" maxlength="50" required value="<?php echo $datos['nombre_Categoria']; ?>" >
 				</div>
 		  	</div>
 		  	<div class="column">
 		    	<div class="control">
 					<label>Ubicación</label>
-				  	<input class="input" type="text" name="categoria_ubicacion" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{5,150}" maxlength="150" value="<?php echo $datos['categoria_ubicacion']; ?>" >
+				  	<input class="input" type="text" name="descripcion_Categoria" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{5,150}" maxlength="150" value="<?php echo $datos['descripcion_Categoria']; ?>" >
 				</div>
 		  	</div>
 		</div>

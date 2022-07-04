@@ -3,14 +3,14 @@
     require_once "main.php";
 
     /*== Almacenando datos ==*/
-    $nombre=limpiar_cadena($_POST['usuario_nombre']);
-    $apellido=limpiar_cadena($_POST['usuario_apellido']);
+    $nombre=limpiar_cadena($_POST['usuario_Nombre']);
+    $apellido=limpiar_cadena($_POST['usuario_Apellido']);
 
-    $usuario=limpiar_cadena($_POST['usuario_usuario']);
-    $email=limpiar_cadena($_POST['usuario_email']);
+    $usuario=limpiar_cadena($_POST['usuario_Usuario']);
+    $email=limpiar_cadena($_POST['usuario_Email']);
 
-    $clave_1=limpiar_cadena($_POST['usuario_pass_1']);
-    $clave_2=limpiar_cadena($_POST['usuario_pass_2']);
+    $clave_1=limpiar_cadena($_POST['usuario_Pass_1']);
+    $clave_2=limpiar_cadena($_POST['usuario_Pass_2']);
 
 
     /*== Verificando campos obligatorios ==*/
@@ -71,7 +71,7 @@
     if($email!=""){
         if(filter_var($email, FILTER_VALIDATE_EMAIL)){
             $check_email=conexion();
-            $check_email=$check_email->query("SELECT usuario_email FROM usuario WHERE usuario_email='$email'");
+            $check_email=$check_email->query("SELECT usuario_Email FROM usuario WHERE usuario_Email='$email'");
             if($check_email->rowCount()>0){
                 echo '
                     <div class="notification is-danger is-light">
@@ -96,7 +96,7 @@
 
     /*== Verificando usuario ==*/
     $check_usuario=conexion();
-    $check_usuario=$check_usuario->query("SELECT usuario_usuario FROM usuario WHERE usuario_usuario='$usuario'");
+    $check_usuario=$check_usuario->query("SELECT usuario_Usuario FROM usuario WHERE usuario_Usuario='$usuario'");
     if($check_usuario->rowCount()>0){
         echo '
             <div class="notification is-danger is-light">
@@ -125,14 +125,14 @@
 
     /*== Guardando datos ==*/
     $guardar_usuario=conexion();
-    $guardar_usuario=$guardar_usuario->prepare("INSERT INTO usuario( usuario_Id, usuario_nombre, usuario_apellido, usuario_usuario, usuario_pass, usuario_email) VALUES(null,:nombre,:apellido,:usuario,:clave,:email)");
+    $guardar_usuario=$guardar_usuario->prepare("INSERT INTO usuario(id_Usuario,usuario_Usuario,usuario_Pass, usuario_Email,usuario_Nombre,usuario_Apellido) VALUES(null,:usuario,:clave,:email,:nombre,:apellido)");
 
     $marcadores=[
-        ":nombre"=>$nombre,
-        ":apellido"=>$apellido,
         ":usuario"=>$usuario,
         ":clave"=>$clave,
-        ":email"=>$email
+        ":email"=>$email,
+        ":nombre"=>$nombre,
+        ":apellido"=>$apellido,
     ];
 
     $guardar_usuario->execute($marcadores);

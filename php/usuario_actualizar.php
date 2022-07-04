@@ -4,11 +4,11 @@
 	require_once "main.php";
 
     /*== Almacenando id ==*/
-    $id=limpiar_cadena($_POST['usuario_Id']);
+    $id=limpiar_cadena($_POST['id_Usuario']);
 
     /*== Verificando usuario ==*/
 	$check_usuario=conexion();
-	$check_usuario=$check_usuario->query("SELECT * FROM usuario WHERE usuario_Id='$id'");
+	$check_usuario=$check_usuario->query("SELECT * FROM usuario WHERE id_Usuario='$id'");
 
     if($check_usuario->rowCount()<=0){
     	echo '
@@ -64,12 +64,12 @@
 
     /*== Verificando el administrador en DB ==*/
     $check_admin=conexion();
-    $check_admin=$check_admin->query("SELECT usuario_usuario,usuario_pass FROM usuario WHERE usuario_usuario='$admin_usuario' AND usuario_Id='".$_SESSION['id']."'");
+    $check_admin=$check_admin->query("SELECT usuario_Usuario,usuario_Pass FROM usuario WHERE usuario_Usuario='$admin_usuario' AND id_Usuario='".$_SESSION['id']."'");
     if($check_admin->rowCount()==1){
 
     	$check_admin=$check_admin->fetch();
 
-    	if($check_admin['usuario_usuario']!=$admin_usuario || !password_verify($admin_clave, $check_admin['usuario_pass'])){
+    	if($check_admin['usuario_Usuario']!=$admin_usuario || !password_verify($admin_clave, $check_admin['usuario_Pass'])){
     		echo '
 	            <div class="notification is-danger is-light">
 	                <strong>¡Ocurrio un error inesperado!</strong><br>
@@ -92,14 +92,14 @@
 
 
     /*== Almacenando datos del usuario ==*/
-    $nombre=limpiar_cadena($_POST['usuario_nombre']);
-    $apellido=limpiar_cadena($_POST['usuario_apellido']);
+    $nombre=limpiar_cadena($_POST['usuario_Nombre']);
+    $apellido=limpiar_cadena($_POST['usuario_Apellido']);
 
-    $usuario=limpiar_cadena($_POST['usuario_usuario']);
-    $email=limpiar_cadena($_POST['usuario_email']);
+    $usuario=limpiar_cadena($_POST['usuario_Usuario']);
+    $email=limpiar_cadena($_POST['usuario_Email']);
 
-    $clave_1=limpiar_cadena($_POST['usuario_pass_1']);
-    $clave_2=limpiar_cadena($_POST['usuario_pass_2']);
+    $clave_1=limpiar_cadena($_POST['usuario_Pass_1']);
+    $clave_2=limpiar_cadena($_POST['usuario_Pass_2']);
 
 
     /*== Verificando campos obligatorios del usuario ==*/
@@ -147,10 +147,10 @@
 
 
     /*== Verificando email ==*/
-    if($email!="" && $email!=$datos['usuario_email']){
+    if($email!="" && $email!=$datos['usuario_Email']){
         if(filter_var($email, FILTER_VALIDATE_EMAIL)){
             $check_email=conexion();
-            $check_email=$check_email->query("SELECT usuario_email FROM usuario WHERE usuario_email='$email'");
+            $check_email=$check_email->query("SELECT usuario_Email FROM usuario WHERE usuario_Email='$email'");
             if($check_email->rowCount()>0){
                 echo '
                     <div class="notification is-danger is-light">
@@ -174,9 +174,9 @@
 
 
     /*== Verificando usuario ==*/
-    if($usuario!=$datos['usuario_usuario']){
+    if($usuario!=$datos['usuario_Usuario']){
 	    $check_usuario=conexion();
-	    $check_usuario=$check_usuario->query("SELECT usuario_usuario FROM usuario WHERE usuario_usuario='$usuario'");
+	    $check_usuario=$check_usuario->query("SELECT usuario_Usuario FROM usuario WHERE usuario_Usuario='$usuario'");
 	    if($check_usuario->rowCount()>0){
 	        echo '
 	            <div class="notification is-danger is-light">
@@ -214,13 +214,13 @@
 		    }
 	    }
     }else{
-    	$clave=$datos['usuario_pass'];
+    	$clave=$datos['usuario_Pass'];
     }
 
 
     /*== Actualizar datos ==*/
     $actualizar_usuario=conexion();
-    $actualizar_usuario=$actualizar_usuario->prepare("UPDATE usuario SET usuario_nombre=:nombre,usuario_apellido=:apellido,usuario_usuario=:usuario,usuario_pass=:clave,usuario_email=:email WHERE usuario_Id=:id");
+    $actualizar_usuario=$actualizar_usuario->prepare("UPDATE usuario SET usuario_Nombre=:nombre,usuario_Apellido=:apellido,usuario_Usuario=:usuario,usuario_Pass=:clave,usuario_Email=:email WHERE id_Usuario=:id");
 
     $marcadores=[
         ":nombre"=>$nombre,

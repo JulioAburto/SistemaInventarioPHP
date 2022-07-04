@@ -5,17 +5,17 @@
 
     /*== Verificando usuario ==*/
     $check_usuario=conexion();
-    $check_usuario=$check_usuario->query("SELECT usuario_Id FROM usuario WHERE usuario_Id='$user_id_del'");
+    $check_usuario=$check_usuario->query("SELECT id_Usuario FROM usuario WHERE id_Usuario='$user_id_del'");
     
     if($check_usuario->rowCount()==1){
 
     	$check_productos=conexion();
-    	$check_productos=$check_productos->query("SELECT usuario_Id FROM producto WHERE usuario_Id='$user_id_del' LIMIT 1");
+    	$check_productos=$check_productos->query("SELECT id_Usuario FROM articulo WHERE id_Usuario='$user_id_del' LIMIT 1");
 
     	if($check_productos->rowCount()<=0){
     		
 	    	$eliminar_usuario=conexion();
-	    	$eliminar_usuario=$eliminar_usuario->prepare("DELETE FROM usuario WHERE usuario_Id=:id");
+	    	$eliminar_usuario=$eliminar_usuario->prepare("DELETE FROM usuario WHERE id_Usuario=:id");
 
 	    	$eliminar_usuario->execute([":id"=>$user_id_del]);
 

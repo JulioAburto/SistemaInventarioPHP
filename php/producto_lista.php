@@ -2,25 +2,25 @@
 	$inicio = ($pagina>0) ? (($pagina * $registros)-$registros) : 0;
 	$tabla="";
 
-	$campos="producto.producto_id,producto.producto_codigo,producto.producto_nombre,producto.producto_precio,producto.producto_stock,producto.producto_foto,producto.categoria_id,producto.usuario_Id,categoria.categoria_id,categoria.categoria_nombre,usuario.usuario_Id,usuario.usuario_nombre,usuario.usuario_apellido";
+	$campos="articulo.id_Articulo,articulo.codigo_Articulo,articulo.nombre_Articulo,articulo.precio_Articulo,articulo.stock_Articulo,articulo.foto_Articulo,articulo.id_Categoria,articulo.id_Usuario,categoria.id_Categoria,categoria.nombre_Categoria,usuario.id_Usuario,usuario.usuario_Nombre,usuario.usuario_Apellido";
 
 	if(isset($busqueda) && $busqueda!=""){
 
-		$consulta_datos="SELECT $campos FROM producto INNER JOIN categoria ON producto.categoria_id=categoria.categoria_id INNER JOIN usuario ON producto.usuario_Id=usuario.usuario_Id WHERE producto.producto_codigo LIKE '%$busqueda%' OR producto.producto_nombre LIKE '%$busqueda%' ORDER BY producto.producto_nombre ASC LIMIT $inicio,$registros";
+		$consulta_datos="SELECT $campos FROM articulo INNER JOIN categoria ON articulo.id_Categoria=categoria.id_Categoria INNER JOIN usuario ON articulo.id_Usuario=usuario.id_Usuario WHERE articulo.codigo_Articulo LIKE '%$busqueda%' OR articulo.nombre_Articulo LIKE '%$busqueda%' ORDER BY articulo.nombre_Articulo ASC LIMIT $inicio,$registros";
 
-		$consulta_total="SELECT COUNT(producto_id) FROM producto WHERE producto_codigo LIKE '%$busqueda%' OR producto_nombre LIKE '%$busqueda%'";
+		$consulta_total="SELECT COUNT(id_Articulo) FROM articulo WHERE codigo_Articulo LIKE '%$busqueda%' OR nombre_Articulo LIKE '%$busqueda%'";
 
-	}elseif($categoria_id>0){
+	}elseif($id_Categoria>0){
 
-		$consulta_datos="SELECT $campos FROM producto INNER JOIN categoria ON producto.categoria_id=categoria.categoria_id INNER JOIN usuario ON producto.usuario_Id=usuario.usuario_Id WHERE producto.categoria_id='$categoria_id' ORDER BY producto.producto_nombre ASC LIMIT $inicio,$registros";
+		$consulta_datos="SELECT $campos FROM articulo INNER JOIN categoria ON articulo.id_Categoria=categoria.id_Categoria INNER JOIN usuario ON articulo.id_Usuario=usuario.id_Usuario WHERE articulo.id_Categoria='$id_Categoria' ORDER BY articulo.nombre_Articulo ASC LIMIT $inicio,$registros";
 
-		$consulta_total="SELECT COUNT(producto_id) FROM producto WHERE categoria_id='$categoria_id'";
+		$consulta_total="SELECT COUNT(id_Articulo) FROM articulo WHERE id_Categoria='$id_Categoria'";
 
 	}else{
 
-		$consulta_datos="SELECT $campos FROM producto INNER JOIN categoria ON producto.categoria_id=categoria.categoria_id INNER JOIN usuario ON producto.usuario_Id=usuario.usuario_Id ORDER BY producto.producto_nombre ASC LIMIT $inicio,$registros";
+		$consulta_datos="SELECT $campos FROM articulo INNER JOIN categoria ON articulo.id_Categoria=categoria.id_Categoria INNER JOIN usuario ON articulo.id_Usuario=usuario.id_Usuario ORDER BY articulo.nombre_Articulo ASC LIMIT $inicio,$registros";
 
-		$consulta_total="SELECT COUNT(producto_id) FROM producto";
+		$consulta_total="SELECT COUNT(id_Articulo) FROM articulo";
 
 	}
 
@@ -42,8 +42,8 @@
 				<article class="media">
 			        <figure class="media-left">
 			            <p class="image is-64x64">';
-			            if(is_file("./img/producto/".$rows['producto_foto'])){
-			            	$tabla.='<img src="./img/producto/'.$rows['producto_foto'].'">';
+			            if(is_file("./img/producto/".$rows['foto_Articulo'])){
+			            	$tabla.='<img src="./img/producto/'.$rows['foto_Articulo'].'">';
 			            }else{
 			            	$tabla.='<img src="./img/producto.png">';
 			            }
@@ -52,14 +52,14 @@
 			        <div class="media-content">
 			            <div class="content">
 			              <p>
-			                <strong>'.$contador.' - '.$rows['producto_nombre'].'</strong><br>
-			                <strong>CODIGO:</strong> '.$rows['producto_codigo'].', <strong>PRECIO:</strong> $'.$rows['producto_precio'].', <strong>STOCK:</strong> '.$rows['producto_stock'].', <strong>CATEGORIA:</strong> '.$rows['categoria_nombre'].', <strong>REGISTRADO POR:</strong> '.$rows['usuario_nombre'].' '.$rows['usuario_apellido'].'
+			                <strong>'.$contador.' - '.$rows['nombre_Articulo'].'</strong><br>
+			                <strong>CODIGO:</strong> '.$rows['codigo_Articulo'].', <strong>PRECIO:</strong> $'.$rows['precio_Articulo'].', <strong>STOCK:</strong> '.$rows['stock_Articulo'].', <strong>CATEGORIA:</strong> '.$rows['nombre_Categoria'].', <strong>REGISTRADO POR:</strong> '.$rows['usuario_Nombre'].' '.$rows['usuario_Apellido'].'
 			              </p>
 			            </div>
 			            <div class="has-text-right">
-			                <a href="index.php?vista=product_img&product_id_up='.$rows['producto_id'].'" class="button is-link is-rounded is-small">Imagen</a>
-			                <a href="index.php?vista=product_update&product_id_up='.$rows['producto_id'].'" class="button is-success is-rounded is-small">Actualizar</a>
-			                <a href="'.$url.$pagina.'&product_id_del='.$rows['producto_id'].'" class="button is-danger is-rounded is-small">Eliminar</a>
+			                <a href="index.php?vista=product_img&product_id_up='.$rows['id_Articulo'].'" class="button is-link is-rounded is-small">Imagen</a>
+			                <a href="index.php?vista=product_update&product_id_up='.$rows['id_Articulo'].'" class="button is-success is-rounded is-small">Actualizar</a>
+			                <a href="'.$url.$pagina.'&product_id_del='.$rows['id_Articulo'].'" class="button is-danger is-rounded is-small">Eliminar</a>
 			            </div>
 			        </div>
 			    </article>

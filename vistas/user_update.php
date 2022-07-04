@@ -20,7 +20,7 @@
 
         /*== Verificando usuario ==*/
     	$check_usuario=conexion();
-    	$check_usuario=$check_usuario->query("SELECT * FROM usuario WHERE usuario_Id='$id'");
+    	$check_usuario=$check_usuario->query("SELECT * FROM usuario WHERE id_Usuario='$id'");
 
         if($check_usuario->rowCount()>0){
         	$datos=$check_usuario->fetch();
@@ -30,19 +30,19 @@
 
 	<form action="./php/usuario_actualizar.php" method="POST" class="FormularioAjax" autocomplete="off" >
 
-		<input type="hidden" name="usuario_Id" value="<?php echo $datos['usuario_Id']; ?>" required >
+		<input type="hidden" name="id_Usuario" value="<?php echo $datos['id_Usuario']; ?>" required >
 		
 		<div class="columns">
 		  	<div class="column">
 		    	<div class="control">
 					<label>Nombres</label>
-				  	<input class="input" type="text" name="usuario_nombre" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,40}" maxlength="40" required value="<?php echo $datos['usuario_nombre']; ?>" >
+				  	<input class="input" type="text" name="usuario_Nombre" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,40}" maxlength="40" required value="<?php echo $datos['usuario_Nombre']; ?>" >
 				</div>
 		  	</div>
 		  	<div class="column">
 		    	<div class="control">
 					<label>Apellidos</label>
-				  	<input class="input" type="text" name="usuario_apellido" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,40}" maxlength="40" required value="<?php echo $datos['usuario_apellido']; ?>" >
+				  	<input class="input" type="text" name="usuario_Apellido" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,40}" maxlength="40" required value="<?php echo $datos['usuario_Apellido']; ?>" >
 				</div>
 		  	</div>
 		</div>
@@ -50,13 +50,13 @@
 		  	<div class="column">
 		    	<div class="control">
 					<label>Usuario</label>
-				  	<input class="input" type="text" name="usuario_usuario" pattern="[a-zA-Z0-9]{4,20}" maxlength="20" required value="<?php echo $datos['usuario_usuario']; ?>" >
+				  	<input class="input" type="text" name="usuario_Usuario" pattern="[a-zA-Z0-9]{4,20}" maxlength="20" required value="<?php echo $datos['usuario_Usuario']; ?>" >
 				</div>
 		  	</div>
 		  	<div class="column">
 		    	<div class="control">
 					<label>Email</label>
-				  	<input class="input" type="email" name="usuario_email" maxlength="70" value="<?php echo $datos['usuario_email']; ?>" >
+				  	<input class="input" type="email" name="usuario_Email" maxlength="70" value="<?php echo $datos['usuario_Email']; ?>" >
 				</div>
 		  	</div>
 		</div>

@@ -2,12 +2,12 @@
 	require_once "main.php";
 
 	/*== Almacenando id ==*/
-    $id=limpiar_cadena($_POST['producto_id']);
+    $id=limpiar_cadena($_POST['id_Articulo']);
 
 
     /*== Verificando producto ==*/
 	$check_producto=conexion();
-	$check_producto=$check_producto->query("SELECT * FROM producto WHERE producto_id='$id'");
+	$check_producto=$check_producto->query("SELECT * FROM articulo WHERE id_Articulo='$id'");
 
     if($check_producto->rowCount()<=0){
     	echo '
@@ -24,12 +24,12 @@
 
 
     /*== Almacenando datos ==*/
-    $codigo=limpiar_cadena($_POST['producto_codigo']);
-	$nombre=limpiar_cadena($_POST['producto_nombre']);
+    $codigo=limpiar_cadena($_POST['codigo_Articulo']);
+	$nombre=limpiar_cadena($_POST['nombre_Articulo']);
 
-	$precio=limpiar_cadena($_POST['producto_precio']);
-	$stock=limpiar_cadena($_POST['producto_stock']);
-	$categoria=limpiar_cadena($_POST['producto_categoria']);
+	$precio=limpiar_cadena($_POST['precio_Articulo']);
+	$stock=limpiar_cadena($_POST['stock_Articulo']);
+	$categoria=limpiar_cadena($_POST['id_Categoria']);
 
 
 	/*== Verificando campos obligatorios ==*/
@@ -87,9 +87,9 @@
 
 
     /*== Verificando codigo ==*/
-    if($codigo!=$datos['producto_codigo']){
+    if($codigo!=$datos['codigo_Articulo']){
 	    $check_codigo=conexion();
-	    $check_codigo=$check_codigo->query("SELECT producto_codigo FROM producto WHERE producto_codigo='$codigo'");
+	    $check_codigo=$check_codigo->query("SELECT codigo_Articulo FROM articulo WHERE codigo_Articulo='$codigo'");
 	    if($check_codigo->rowCount()>0){
 	        echo '
 	            <div class="notification is-danger is-light">
@@ -104,9 +104,9 @@
 
 
     /*== Verificando nombre ==*/
-    if($nombre!=$datos['producto_nombre']){
+    if($nombre!=$datos['nombre_Articulo']){
 	    $check_nombre=conexion();
-	    $check_nombre=$check_nombre->query("SELECT producto_nombre FROM producto WHERE producto_nombre='$nombre'");
+	    $check_nombre=$check_nombre->query("SELECT nombre_Articulo FROM articulo WHERE nombre_Articulo='$nombre'");
 	    if($check_nombre->rowCount()>0){
 	        echo '
 	            <div class="notification is-danger is-light">
@@ -121,9 +121,9 @@
 
 
     /*== Verificando categoria ==*/
-    if($categoria!=$datos['categoria_id']){
+    if($categoria!=$datos['id_Categoria']){
 	    $check_categoria=conexion();
-	    $check_categoria=$check_categoria->query("SELECT categoria_id FROM categoria WHERE categoria_id='$categoria'");
+	    $check_categoria=$check_categoria->query("SELECT id_Categoria FROM articulo WHERE id_Categoria='$categoria'");
 	    if($check_categoria->rowCount()<=0){
 	        echo '
 	            <div class="notification is-danger is-light">
@@ -139,7 +139,7 @@
 
     /*== Actualizando datos ==*/
     $actualizar_producto=conexion();
-    $actualizar_producto=$actualizar_producto->prepare("UPDATE producto SET producto_codigo=:codigo,producto_nombre=:nombre,producto_precio=:precio,producto_stock=:stock,categoria_id=:categoria WHERE producto_id=:id");
+    $actualizar_producto=$actualizar_producto->prepare("UPDATE articulo SET codigo_Articulo=:codigo,nombre_Articulo=:nombre,precio_Articulo=:precio,stock_Articulo=:stock,id_Categoria=:categoria WHERE id_Articulo=:id");
 
     $marcadores=[
         ":codigo"=>$codigo,
