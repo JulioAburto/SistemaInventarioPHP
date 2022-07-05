@@ -28,7 +28,7 @@
 
 	# Limpiar cadenas de texto #
 	function limpiar_cadena($cadena){
-		//$cadena=trim($cadena);
+		$cadena=trim($cadena);
 		$cadena=stripslashes($cadena);
 		$cadena=str_ireplace("<script>", "", $cadena);
 		$cadena=str_ireplace("</script>", "", $cadena);

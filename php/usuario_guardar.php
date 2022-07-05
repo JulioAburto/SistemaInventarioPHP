@@ -125,7 +125,7 @@
 
     /*== Guardando datos ==*/
     $guardar_usuario=conexion();
-    $guardar_usuario=$guardar_usuario->prepare("INSERT INTO usuario(id_Usuario,usuario_Usuario,usuario_Pass, usuario_Email,usuario_Nombre,usuario_Apellido) VALUES(null,:usuario,:clave,:email,:nombre,:apellido)");
+    $guardar_usuario=$guardar_usuario->prepare("INSERT INTO usuario(id_Usuario,usuario_Usuario,usuario_Pass,usuario_Email,usuario_Nombre,usuario_Apellido) VALUES(null,:usuario,:clave,:email,:nombre,:apellido)");
 
     $marcadores=[
         ":usuario"=>$usuario,

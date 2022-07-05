@@ -220,14 +220,14 @@
 
     /*== Actualizar datos ==*/
     $actualizar_usuario=conexion();
-    $actualizar_usuario=$actualizar_usuario->prepare("UPDATE usuario SET usuario_Nombre=:nombre,usuario_Apellido=:apellido,usuario_Usuario=:usuario,usuario_Pass=:clave,usuario_Email=:email WHERE id_Usuario=:id");
+    $actualizar_usuario=$actualizar_usuario->prepare("UPDATE usuario SET usuario_Usuario=:usuario,usuario_Pass=:clave,usuario_Email=:email,usuario_Nombre=:nombre,usuario_Apellido=:apellido, WHERE id_Usuario=:id");
 
     $marcadores=[
-        ":nombre"=>$nombre,
-        ":apellido"=>$apellido,
         ":usuario"=>$usuario,
         ":clave"=>$clave,
         ":email"=>$email,
+        ":nombre"=>$nombre,
+        ":apellido"=>$apellido,
         ":id"=>$id
     ];
 

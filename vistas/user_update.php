@@ -3,11 +3,11 @@
 ?>
 <div class="container is-fluid mb-6">
 	<?php if($id==$_SESSION['id']){ ?>
-		<h1 class="title">Mi cuenta</h1>
-		<h2 class="subtitle">Actualizar datos de cuenta</h2>
+	<h1 class="title">Mi cuenta</h1>
+	<h2 class="subtitle">Actualizar datos de cuenta</h2>
 	<?php }else{ ?>
-		<h1 class="title">Usuarios</h1>
-		<h2 class="subtitle">Actualizar usuario</h2>
+	<h1 class="title">Usuarios</h1>
+	<h2 class="subtitle">Actualizar usuario</h2>
 	<?php } ?>
 </div>
 
@@ -21,81 +21,140 @@
         /*== Verificando usuario ==*/
     	$check_usuario=conexion();
     	$check_usuario=$check_usuario->query("SELECT * FROM usuario WHERE id_Usuario='$id'");
-
-        if($check_usuario->rowCount()>0){
-        	$datos=$check_usuario->fetch();
-	?>
+	if($check_usuario->rowCount()>0){ $datos=$check_usuario->fetch(); ?>
 
 	<div class="form-rest mb-6 mt-6"></div>
 
-	<form action="./php/usuario_actualizar.php" method="POST" class="FormularioAjax" autocomplete="off" >
+	<form
+		action="./php/usuario_actualizar.php"
+		method="POST"
+		class="FormularioAjax"
+		autocomplete="off"
+	>
+		<input type="hidden" name="id_Usuario" value="<?php echo $datos['id_Usuario']; ?>" required />
 
-		<input type="hidden" name="id_Usuario" value="<?php echo $datos['id_Usuario']; ?>" required >
-		
-		<div class="columns">
-		  	<div class="column">
-		    	<div class="control">
-					<label>Nombres</label>
-				  	<input class="input" type="text" name="usuario_Nombre" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,40}" maxlength="40" required value="<?php echo $datos['usuario_Nombre']; ?>" >
-				</div>
-		  	</div>
-		  	<div class="column">
-		    	<div class="control">
-					<label>Apellidos</label>
-				  	<input class="input" type="text" name="usuario_Apellido" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,40}" maxlength="40" required value="<?php echo $datos['usuario_Apellido']; ?>" >
-				</div>
-		  	</div>
-		</div>
-		<div class="columns">
-		  	<div class="column">
-		    	<div class="control">
-					<label>Usuario</label>
-				  	<input class="input" type="text" name="usuario_Usuario" pattern="[a-zA-Z0-9]{4,20}" maxlength="20" required value="<?php echo $datos['usuario_Usuario']; ?>" >
-				</div>
-		  	</div>
-		  	<div class="column">
-		    	<div class="control">
-					<label>Email</label>
-				  	<input class="input" type="email" name="usuario_Email" maxlength="70" value="<?php echo $datos['usuario_Email']; ?>" >
-				</div>
-		  	</div>
-		</div>
-		<br><br>
-		<p class="has-text-centered">
-			SI desea actualizar la clave de este usuario por favor llene los 2 campos. Si NO desea actualizar la clave deje los campos vacíos.
-		</p>
-		<br>
 		<div class="columns">
 			<div class="column">
-		    	<div class="control">
-					<label>Clave</label>
-				  	<input class="input" type="password" name="usuario_pass_1" pattern="[a-zA-Z0-9$@.-]{7,100}" maxlength="100" >
+				<div class="control">
+					<label>Nombres</label>
+					<input
+						class="input"
+						type="text"
+						name="usuario_Nombre"
+						pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,40}"
+						maxlength="40"
+						required
+						value="<?php echo $datos['usuario_Nombre']; ?>"
+					/>
 				</div>
-		  	</div>
-		  	<div class="column">
-		    	<div class="control">
-					<label>Repetir clave</label>
-				  	<input class="input" type="password" name="usuario_pass_2" pattern="[a-zA-Z0-9$@.-]{7,100}" maxlength="100" >
+			</div>
+			<div class="column">
+				<div class="control">
+					<label>Apellidos</label>
+					<input
+						class="input"
+						type="text"
+						name="usuario_Apellido"
+						pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,40}"
+						maxlength="40"
+						required
+						value="<?php echo $datos['usuario_Apellido']; ?>"
+					/>
 				</div>
-		  	</div>
+			</div>
 		</div>
-		<br><br><br>
+		<div class="columns">
+			<div class="column">
+				<div class="control">
+					<label>Usuario</label>
+					<input
+						class="input"
+						type="text"
+						name="usuario_Usuario"
+						pattern="[a-zA-Z0-9]{4,20}"
+						maxlength="20"
+						required
+						value="<?php echo $datos['usuario_Usuario']; ?>"
+					/>
+				</div>
+			</div>
+			<div class="column">
+				<div class="control">
+					<label>Email</label>
+					<input
+						class="input"
+						type="email"
+						name="usuario_Email"
+						maxlength="70"
+						value="<?php echo $datos['usuario_Email']; ?>"
+					/>
+				</div>
+			</div>
+		</div>
+		<br /><br />
 		<p class="has-text-centered">
-			Para poder actualizar los datos de este usuario por favor ingrese su USUARIO y CLAVE con la que ha iniciado sesión
+			SI desea actualizar la clave de este usuario por favor llene los 2 campos. Si NO desea
+			actualizar la clave deje los campos vacíos.
+		</p>
+		<br />
+		<div class="columns">
+			<div class="column">
+				<div class="control">
+					<label>Clave</label>
+					<input
+						class="input"
+						type="password"
+						name="usuario_Pass_1"
+						pattern="[a-zA-Z0-9$@.-]{7,100}"
+						maxlength="100"
+					/>
+				</div>
+			</div>
+			<div class="column">
+				<div class="control">
+					<label>Repetir clave</label>
+					<input
+						class="input"
+						type="password"
+						name="usuario_Pass_2"
+						pattern="[a-zA-Z0-9$@.-]{7,100}"
+						maxlength="100"
+					/>
+				</div>
+			</div>
+		</div>
+		<br /><br /><br />
+		<p class="has-text-centered">
+			Para poder actualizar los datos de este usuario por favor ingrese su USUARIO y CLAVE con la
+			que ha iniciado sesión
 		</p>
 		<div class="columns">
-		  	<div class="column">
-		    	<div class="control">
+			<div class="column">
+				<div class="control">
 					<label>Usuario</label>
-				  	<input class="input" type="text" name="administrador_usuario" pattern="[a-zA-Z0-9]{4,20}" maxlength="20" required >
+					<input
+						class="input"
+						type="text"
+						name="administrador_usuario"
+						pattern="[a-zA-Z0-9]{4,20}"
+						maxlength="20"
+						required
+					/>
 				</div>
-		  	</div>
-		  	<div class="column">
-		    	<div class="control">
+			</div>
+			<div class="column">
+				<div class="control">
 					<label>Clave</label>
-				  	<input class="input" type="password" name="administrador_clave" pattern="[a-zA-Z0-9$@.-]{7,100}" maxlength="100" required >
+					<input
+						class="input"
+						type="password"
+						name="administrador_clave"
+						pattern="[a-zA-Z0-9$@.-]{7,100}"
+						maxlength="100"
+						required
+					/>
 				</div>
-		  	</div>
+			</div>
 		</div>
 		<p class="has-text-centered">
 			<button type="submit" class="button is-success is-rounded">Actualizar</button>
@@ -106,5 +165,4 @@
 			include "./inc/error_alert.php";
 		}
 		$check_usuario=null;
-	?>
-</div>
+	?></div>

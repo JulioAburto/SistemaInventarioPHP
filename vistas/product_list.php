@@ -21,7 +21,7 @@
             }
         }
 
-        $categoria_id = (isset($_GET['category_id'])) ? $_GET['category_id'] : 0;
+        $id_Categoria = (isset($_GET['category_id'])) ? $_GET['category_id'] : 0;
 
         $pagina=limpiar_cadena($pagina);
         $url="index.php?vista=product_list&page="; /* <== */

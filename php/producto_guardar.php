@@ -192,7 +192,7 @@
 
 	/*== Guardando datos ==*/
     $guardar_producto=conexion();
-    $guardar_producto=$guardar_producto->prepare("INSERT INTO articulo(id_Categoria,id_Usuario,codigo_Articulo,nombre_Articulo,precio_Articulo,stock_Articulo,foto_Articulo) VALUES(:categoria,:usuario,:codigo,:nombre,:precio,:stock,:foto)");
+    $guardar_producto=$guardar_producto->prepare("INSERT INTO articulo(id_Articulo,id_Categoria,id_Usuario,codigo_Articulo,nombre_Articulo,precio_Articulo,stock_Articulo,foto_Articulo) VALUES(null,:categoria,:usuario,:codigo,:nombre,:precio,:stock,:foto)");
 
     $marcadores=[
         ":categoria"=>$categoria,

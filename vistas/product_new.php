@@ -10,65 +10,94 @@
 
 	<div class="form-rest mb-6 mt-6"></div>
 
-	<form action="./php/producto_guardar.php" method="POST" class="FormularioAjax" autocomplete="off" enctype="multipart/form-data" >
+	<form
+		action="./php/producto_guardar.php"
+		method="POST"
+		class="FormularioAjax"
+		autocomplete="off"
+		enctype="multipart/form-data"
+	>
 		<div class="columns">
-		  	<div class="column">
-		    	<div class="control">
+			<div class="column">
+				<div class="control">
 					<label>Código de barra</label>
-				  	<input class="input" type="text" name="codigo_Articulo" pattern="[a-zA-Z0-9- ]{1,70}" maxlength="70" required >
+					<input
+						class="input"
+						type="text"
+						name="codigo_Articulo"
+						pattern="[a-zA-Z0-9- ]{1,70}"
+						maxlength="70"
+						required
+					/>
 				</div>
-		  	</div>
-		  	<div class="column">
-		    	<div class="control">
+			</div>
+			<div class="column">
+				<div class="control">
 					<label>Nombre</label>
-				  	<input class="input" type="text" name="nombre_Articulo" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,$#\-\/ ]{1,70}" maxlength="70" required >
+					<input
+						class="input"
+						type="text"
+						name="nombre_Articulo"
+						pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,$#\-\/ ]{1,70}"
+						maxlength="70"
+						required
+					/>
 				</div>
-		  	</div>
-		</div>
-		<div class="columns">
-		  	<div class="column">
-		    	<div class="control">
-					<label>Precio</label>
-				  	<input class="input" type="text" name="precio_Articulo" pattern="[0-9.]{1,25}" maxlength="25" required >
-				</div>
-		  	</div>
-		  	<div class="column">
-		    	<div class="control">
-					<label>Stock</label>
-				  	<input class="input" type="text" name="stock_Articulo" pattern="[0-9]{1,25}" maxlength="25" required >
-				</div>
-		  	</div>
-		  	<div class="column">
-				<label>Categoría</label><br>
-		    	<div class="select is-rounded">
-				  	<select name="producto_categoria" >
-				    	<option value="" selected="" >Seleccione una opción</option>
-				    	<?php
-    						$categorias=conexion();
-    						$categorias=$categorias->query("SELECT * FROM categoria");
-    						if($categorias->rowCount()>0){
-    							$categorias=$categorias->fetchAll();
-    							foreach($categorias as $row){
-    								echo '<option value="'.$row['id_Categoria'].'" >'.$row['nombre_Categoria'].'</option>';
-				    			}
-				   			}
-				   			$categorias=null;
-				    	?>
-				  	</select>
-				</div>
-		  	</div>
+			</div>
 		</div>
 		<div class="columns">
 			<div class="column">
-				<label>Foto o imagen del producto</label><br>
+				<div class="control">
+					<label>Precio</label>
+					<input
+						class="input"
+						type="text"
+						name="precio_Articulo"
+						pattern="[0-9.]{1,25}"
+						maxlength="25"
+						required
+					/>
+				</div>
+			</div>
+			<div class="column">
+				<div class="control">
+					<label>Stock</label>
+					<input
+						class="input"
+						type="text"
+						name="stock_Articulo"
+						pattern="[0-9]{1,25}"
+						maxlength="25"
+						required
+					/>
+				</div>
+			</div>
+			<div class="column">
+				<label>Categoría</label><br />
+				<div class="select is-rounded">
+					<select name="id_Categoria">
+						<option value="" selected="">Seleccione una opción</option>
+						<?php
+    						$categorias=conexion();
+    						$categorias=$categorias->query("SELECT * FROM categoria"); if($categorias->rowCount()>0){
+						$categorias=$categorias->fetchAll(); foreach($categorias as $row){ echo '
+						<option value="'.$row['id_Categoria'].'">'.$row['nombre_Categoria'].'</option>
+						'; } } $categorias=null; ?>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="columns">
+			<div class="column">
+				<label>Foto o imagen del producto</label><br />
 				<div class="file is-small has-name">
-				  	<label class="file-label">
-				    	<input class="file-input" type="file" name="foto_Articulo" accept=".jpg, .png, .jpeg" >
-				    	<span class="file-cta">
-				      		<span class="file-label">Imagen</span>
-				    	</span>
-				    	<span class="file-name">JPG, JPEG, PNG. (MAX 3MB)</span>
-				  	</label>
+					<label class="file-label">
+						<input class="file-input" type="file" name="foto_Articulo" accept=".jpg, .png, .jpeg" />
+						<span class="file-cta">
+							<span class="file-label">Imagen</span>
+						</span>
+						<span class="file-name">JPG, JPEG, PNG. (MAX 3MB)</span>
+					</label>
 				</div>
 			</div>
 		</div>
