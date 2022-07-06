@@ -137,7 +137,7 @@
 
     $guardar_usuario->execute($marcadores);
 
-    if($guardar_usuario->rowCount()==0){
+    if($guardar_usuario->rowCount()>=0){
         echo '
             <div class="notification is-info is-light">
                 <strong>¡USUARIO REGISTRADO!</strong><br>
