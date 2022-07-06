@@ -129,7 +129,7 @@
 
     $marcadores=[
         ":usuario"=>$usuario,
-        ":clave"=>$clave,
+        ":clave"=>$clave_1,
         ":email"=>$email,
         ":nombre"=>$nombre,
         ":apellido"=>$apellido,
