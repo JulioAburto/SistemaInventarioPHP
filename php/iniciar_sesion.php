@@ -43,7 +43,7 @@
 
     	$check_user=$check_user->fetch();
 
-    	if($check_user['usuario_Usuario']==$usuario ){
+    	if($check_user['usuario_Usuario']==$usuario && password_verify($clave, $check_user['usuario_Pass'])){
 
     		$_SESSION['id']=$check_user['id_Usuario'];
     		$_SESSION['nombre']=$check_user['usuario_Nombre'];
@@ -55,15 +55,15 @@
 			}else{
 				header("Location: index.php?vista=home");
 			}
-        }   
-    	// }else{
-    	// 	echo '
-	    //         <div class="notification is-danger is-light">
-	    //             <strong>¡Ocurrio un error inesperado!</strong><br>
-	    //             Usuario o clave incorrectos
-	    //         </div>
-	    //     ';
-    	// }
+         
+    	}else{
+    		echo '
+	            <div class="notification is-danger is-light">
+	                <strong>¡Ocurrio un error inesperado!</strong><br>
+	                Usuario o clave incorrectos
+	            </div>
+	        ';
+    	}
     }else{
     	echo '
             <div class="notification is-danger is-light">
