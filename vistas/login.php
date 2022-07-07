@@ -21,8 +21,6 @@
 		<button type="submit" class="button is-info is-rounded">Iniciar sesion</button>
 	</p>
 </form>
-
-
 		<?php
 			if(isset($_POST['login_usuario']) && isset($_POST['login_clave'])){
 				require_once "./php/main.php";

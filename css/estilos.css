@@ -2,6 +2,7 @@ body,
 html {
 	height: 100%;
 	width: 100%;
+	background-color: #f8f9fa;
 }
 .main-container {
 	height: 100%;
@@ -9,6 +10,7 @@ html {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	background-color: #f8f9fa;
 }
 .main-container > .login,
 .main-container > .hero-body {
@@ -16,8 +18,14 @@ html {
 	width: 100%;
 	max-width: 400px;
 	min-width: 300px;
+	background-color: #f8f9fa;
 }
 
 .form-inline {
 	display: inline-flex;
+}
+.button.is-link {
+	background-color: #0096c7;
+	border-color: transparent;
+	color: #fff;
 }

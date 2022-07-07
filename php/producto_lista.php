@@ -57,9 +57,9 @@
 			              </p>
 			            </div>
 			            <div class="has-text-right">
-			                <a href="index.php?vista=product_img&product_id_up='.$rows['id_Articulo'].'" class="button is-link is-rounded is-small">Imagen</a>
-			                <a href="index.php?vista=product_update&product_id_up='.$rows['id_Articulo'].'" class="button is-success is-rounded is-small">Actualizar</a>
-			                <a href="'.$url.$pagina.'&product_id_del='.$rows['id_Articulo'].'" class="button is-danger is-rounded is-small">Eliminar</a>
+			                <a href="index.php?vista=product_img&product_id_up='.$rows['id_Articulo'].'" class="button is-link is-focused is-light is-small">Imagen</a>
+			                <a href="index.php?vista=product_update&product_id_up='.$rows['id_Articulo'].'" class="button is-success is-focused is-light is-small">Actualizar</a>
+			                <a href="'.$url.$pagina.'&product_id_del='.$rows['id_Articulo'].'" class="button is-danger is-focused is-light is-small">Eliminar</a>
 			            </div>
 			        </div>
 			    </article>
@@ -73,7 +73,7 @@
 		if($total>=1){
 			$tabla.='
 				<p class="has-text-centered" >
-					<a href="'.$url.'1" class="button is-link is-rounded is-small mt-4 mb-4">
+					<a href="'.$url.'1" class="button is-link is-focused is-light is-small mt-4 mb-4">
 						Haga clic acá para recargar el listado
 					</a>
 				</p>

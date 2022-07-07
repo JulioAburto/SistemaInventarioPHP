@@ -54,10 +54,10 @@
                     <td>'.$rows['usuario_Usuario'].'</td>
                     <td>'.$rows['usuario_Email'].'</td>
                     <td>
-                        <a href="index.php?vista=user_update&user_id_up='.$rows['id_Usuario'].'" class="button is-success is-rounded is-small">Actualizar</a>
+                        <a href="index.php?vista=user_update&user_id_up='.$rows['id_Usuario'].'" class="button is-success is-focused is-light is-small">Actualizar</a>
                     </td>
                     <td>
-                        <a href="'.$url.$pagina.'&user_id_del='.$rows['id_Usuario'].'" class="button is-danger is-rounded is-small">Eliminar</a>
+                        <a href="'.$url.$pagina.'&user_id_del='.$rows['id_Usuario'].'" class="button is-danger is-focused is-light is-small">Eliminar</a>
                     </td>
                 </tr>
             ';
@@ -69,7 +69,7 @@
 			$tabla.='
 				<tr class="has-text-centered" >
 					<td colspan="7">
-						<a href="'.$url.'1" class="button is-link is-rounded is-small mt-4 mb-4">
+						<a href="'.$url.'1" class="button is-link is-focused is-light is-small mt-4 mb-4">
 							Haga clic acá para recargar el listado
 						</a>
 					</td>

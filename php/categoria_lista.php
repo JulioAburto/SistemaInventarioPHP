@@ -51,13 +51,13 @@
                     <td>'.$rows['nombre_Categoria'].'</td>
                     <td>'.substr($rows['descripcion_Categoria'],0,25).'</td>
                     <td>
-                        <a href="index.php?vista=product_category&category_id='.$rows['id_Categoria'].'" class="button is-link is-rounded is-small">Ver productos</a>
+                        <a href="index.php?vista=product_category&category_id='.$rows['id_Categoria'].'" class="button is-link is-focused is-light is-small">Ver productos</a>
                     </td>
                     <td>
-                        <a href="index.php?vista=category_update&category_id_up='.$rows['id_Categoria'].'" class="button is-success is-rounded is-small">Actualizar</a>
+                        <a href="index.php?vista=category_update&category_id_up='.$rows['id_Categoria'].'" class="button is-success is-focused is-light is-small">Actualizar</a>
                     </td>
                     <td>
-                        <a href="'.$url.$pagina.'&category_id_del='.$rows['id_Categoria'].'" class="button is-danger is-rounded is-small">Eliminar</a>
+                        <a href="'.$url.$pagina.'&category_id_del='.$rows['id_Categoria'].'" class="button is-danger is-focused is-light is-small">Eliminar</a>
                     </td>
                 </tr>
             ';
@@ -69,7 +69,7 @@
 			$tabla.='
 				<tr class="has-text-centered" >
 					<td colspan="5">
-						<a href="'.$url.'1" class="button is-link is-rounded is-small mt-4 mb-4">
+						<a href="'.$url.'1" class="button is-link is-focused is-light is-small mt-4 mb-4">
 							Haga clic acá para recargar el listado
 						</a>
 					</td>
