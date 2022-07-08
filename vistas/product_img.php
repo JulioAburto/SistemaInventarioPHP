@@ -36,7 +36,7 @@
 			<input type="hidden" name="img_del_id" value="<?php echo $datos['id_Articulo']; ?>" />
 
 			<p class="has-text-centered">
-				<button type="submit" class="button is-danger is-rounded">Eliminar imagen</button>
+				<button type="submit" class="button is-danger is-rounded is-focused is-light">Eliminar imagen</button>
 			</p>
 		</form>
 		<?php }else{ ?>
@@ -69,7 +69,7 @@
 				</label>
 			</div>
 			<p class="has-text-centered">
-				<button type="submit" class="button is-success is-rounded">Actualizar</button>
+				<button type="submit" class="button is-success is-rounded is-focused is-light">Actualizar</button>
 			</p>
 		</form>
 	</div>

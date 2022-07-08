@@ -47,7 +47,7 @@
 		$pag_inicio=$inicio+1;
 		foreach($datos as $rows){
 			$tabla.='
-				<tr class="has-text-centered" >
+				<tr class="table-container" >
 					<td>'.$contador.'</td>
                     <td>'.$rows['usuario_Nombre'].'</td>
                     <td>'.$rows['usuario_Apellido'].'</td>

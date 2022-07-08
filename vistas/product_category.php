@@ -16,7 +16,7 @@
                 if($categorias->rowCount()>0){
                     $categorias=$categorias->fetchAll();
                     foreach($categorias as $row){
-                        echo '<a href="index.php?vista=product_category&category_id='.$row['id_Categoria'].'" class="button is-link is-inverted is-fullwidth">'.$row['nombre_Categoria'].'</a>';
+                        echo '<a href="index.php?vista=product_category&category_id='.$row['id_Categoria'].'" class="button is-link is-inverted is-fullwidth button is-info is-light">'.$row['nombre_Categoria'].'</a>';
                     }
                 }else{
                     echo '<p class="has-text-centered" >No hay categorías registradas</p>';

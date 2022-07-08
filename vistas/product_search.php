@@ -29,7 +29,7 @@
                         />
                     </p>
                     <p class="control">
-                        <button class="button is-info" type="submit">Buscar</button>
+                        <button class="button is-info is-focused is-light" type="submit">Buscar</button>
                     </p>
                 </div>
             </form>
@@ -45,7 +45,7 @@
                     Estas buscando <strong>“<?php echo $_SESSION['busqueda_producto']; ?>”</strong>
                 </p>
                 <br />
-                <button type="submit" class="button is-danger is-rounded">Eliminar busqueda</button>
+                <button type="submit" class="button is-danger is-rounded is-focused is-light">Eliminar busqueda</button>
             </form>
         </div>
     </div>

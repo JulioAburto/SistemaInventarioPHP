@@ -59,7 +59,7 @@
 		</div>
 	</div>
 	<p class="has-text-centered">
-		<button type="submit" class="button is-success is-rounded">Actualizar</button>
+		<button type="submit" class="button is-success is-rounded is-focused is-light">Actualizar</button>
 	</p>
 </form>
 

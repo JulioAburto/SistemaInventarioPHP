@@ -132,7 +132,7 @@
                 La imagen del producto ha sido actualizada exitosamente, pulse Aceptar para recargar los cambios.
 
                 <p class="has-text-centered pt-5 pb-5">
-                    <a href="index.php?vista=product_img&product_id_up='.$product_id.'" class="button is-link is-rounded">Aceptar</a>
+                    <a href="index.php?vista=product_img&product_id_up='.$product_id.'" class="button is-link is-rounded is-focused is-light">Aceptar</a>
                 </p">
             </div>
         ';

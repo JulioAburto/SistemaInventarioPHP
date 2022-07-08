@@ -40,7 +40,7 @@
 			</div>
 		</div>
 		<p class="has-text-centered">
-			<button type="submit" class="button is-info is-rounded">Guardar</button>
+			<button type="submit" class="button is-info is-rounded is-focused is-light">Guardar</button>
 		</p>
 	</form>
 </div>
