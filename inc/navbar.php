@@ -1,6 +1,6 @@
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-<nav class="navbar" role="navigation" aria-label="main navigation">
+<nav class="navbar" role="navigation" aria-label="main navigation" style="background-color:#C2E6F9 ;">
 
     <div class="navbar-brand">
         <a class="navbar-item" href="index.php?vista=home">
